@@ -1,0 +1,178 @@
+* {
+	font-family: 'Lato', sans-serif;
+}
+#intro{
+	margin-top: 200px;
+	margin-left: 15%;
+}
+#playlistinfo{
+	margin-top: 200px;
+	margin-left: 15%;
+}
+#rest{
+	margin-top: 100px;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+#yours{
+	margin-left: 15px;
+	font-size: 28pt;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+#pop{
+	font-size: 24px;
+	margin: 3px;
+}
+#currentLength{
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 5px;
+}
+#hiphop{
+	font-size: 24px;
+	margin: 3px;
+}
+#length{
+	margin-top: 15px;
+}
+#updates{
+	display: inline-grid;
+	margin: 20px;
+}
+#playlist{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	
+}
+#duration{
+	text-align: center;
+	font-size: 15pt;
+}
+#timeremaining{
+	text-align: center;
+	font-size: 15pt;
+	margin-left: 150px;
+}
+#playlist-body{
+	border-bottom: 1px solid white;
+	background-color: #074e1e;
+	color: white;
+	height: 60px;
+	line-height: 60px;
+	font-size: 28pt;
+
+}
+#song-lib-body{
+	border-bottom: 1px solid white;
+	background-color: #074e1e;
+	color: white;
+	height: 60px;
+	line-height: 60px;
+	font-size: 28pt;
+}
+#song-lib{
+	margin-top: 30px;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+#sugs{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;	
+	cursor: pointer;
+}
+.drag-drop{
+	display:inline-flex;
+	width: 100%;
+}
+.drop-target{
+	width: 100%;
+	background-color: #AAA;
+	font-weight: bold;
+	font-size: 26px;
+	z-index: 0;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    /*background-color: black;*/
+    /*color: white;*/
+    border: none;
+}
+#sugs{
+  	cursor: pointer;
+  	font-size: 16pt;
+  	height: 45px;
+  	line-height: 45px;
+  	background: linear-gradient(black, #000000d6);
+}
+#sugs:hover{
+	cursor: pointer;
+	font-size: 16pt;
+	height: 45px;
+  	line-height: 45px;
+	background: linear-gradient(white, #000000d6);
+}
+#pop-title{
+  	cursor: pointer;
+  	font-size: 16pt;
+  	height: 45px;
+  	line-height: 45px;
+  	background: linear-gradient(black, #000000d6);
+}
+#pop-title:hover{
+	cursor: pointer;
+	font-size: 16pt;
+	height: 45px;
+  	line-height: 45px;
+	background: linear-gradient(white, #000000d6);
+}
+#hiphop-title{
+	cursor: pointer;
+	font-size: 16pt;
+	height: 45px;
+  	line-height: 45px;
+	background: linear-gradient(black, #000000d6);
+}
+#hiphop-title:hover{
+	cursor: pointer;
+	font-size: 16pt;
+	height: 45px;
+  	line-height: 45px;
+	background: linear-gradient(white, #000000d6);
+}
+#edm-title{
+	cursor: pointer;
+	font-size: 16pt;
+	height: 45px;
+  	line-height: 45px;
+	background: linear-gradient(black, #000000d6);
+}
+#edm-title:hover{
+	cursor: pointer;
+	font-size: 16pt;
+	height: 45px;
+  	line-height: 45px; 
+	background: linear-gradient(white, #000000d6);
+}
+#done{
+    height: 30px;
+    width: 80px;
+    font-size: 12pt;
+}
+#play-body{
+	height: 500px;
+}
+#instructions{
+	font-size: 12pt;
+	color: #777777;
+}
+#completed{
+	display: block;
+    margin-left: 560px;
+    margin-top: 10px;
+    color: #777777;
+}

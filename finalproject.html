@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <link rel="stylesheet" type="text/css" href="finalproject.css" media="screen"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="finalproject.js"></script>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div class="col-md-12" id="intro">
+		<h1> Create A New Playlist For A Workout Class </h1>
+		<form style="display: inline;" id="length-form">
+            <input type="button" id="newplaylist" value="Let's Go!" style="margin-top: 15px; background-color: #074e1e; font-size: 16pt; color:white">
+        </form>
+	</div>
+	<div id="playlistinfo">
+		<h1>Enter Playlist Information</h1>
+		<form style="display: inline;" id="length-form">
+			<input type="text" id="title" style="width: 300px;" placeholder="Class Name">
+            <input type="text" id="length" style="width: 300px;" placeholder="Duration (minutes)">
+            <input type="button" id="submit" value="Submit" style="margin-top: 15px; background-color: #074e1e; height: 25px; color: white">
+        </form>
+    </div>
+	<div id="rest">
+		<div id="yours">Plan Your Class</div>
+		<div id="duration" style="font-weight: bold; color:#777777"></div>
+		<br>
+		<form style="display: inline; margin-left: 25px;" id="playbutton">  
+			<input type="button" id="play" value="Play From Beginning!" style="background-color: #074e1e; color: white">
+		</form>
+		<form style="display: inline; margin-left: 25px;" id="editbutton">  
+			<input type="button" id="edit" value="Go Back To Editing" style="background-color: #d0d0d0;">
+		</form>
+		<form style="display: inline; margin-left: 25px" id="startoverbutton">  
+			<input type="button" id="startover" value="Create A New Playlist" style="background-color: #d0d0d0;">
+		</form>
+		<div class="col-md-12" id="inputlen" style="margin: 5px;">
+		</div>
+		<div class="col-md-12" id="currentlength" style="margin: 5px;">
+		</div>
+		<div style="display: -webkit-inline-box; margin-left: 395px">
+			<div id="timeremaining" style="font-weight: bold; color:#777777">777777
+			</div>
+			<form style="display: inline; margin-left: 40px" id="donebutton">  
+				<input type="button" id="done" value="Publish" style="background-color: #d0d0d0; border: none; margin-left: -10px">
+			</form>
+		</div>
+		<div id="completed">Playlist completed! Click "Publish" to proceed.
+		</div>
+		<div class="drag-drop">
+			<div id="song-lib" class="col-md-6">
+				<div id="song-lib-body">Library</div>
+					<div id="categories">
+						<div id="sugs" style="border: 1px solid black; color:white; border: 1px solid white"> Suggested Videos</div>
+							<div id="suggestions">
+							</div>
+						<div id="pop-title" style="border: 1px solid black; color:white; border: 1px solid white">Pop</div>
+							<div id="pop-items">
+							</div>
+						<div id="hiphop-title" style="border: 1px solid black; color:white; border: 1px solid white" >Hip-Hop</div>
+							<div id="hiphop-items">
+							</div>
+						<div id="edm-title" style="border: 1px solid black; color:white; border: 1px solid white">EDM</div>
+							<div id="edm-items">
+							</div>
+					</div>
+			</div>
+			<div id="playlist" class="col-md-6">
+				<div id="playlist-body" class="droptarget">
+				</div>
+				<div id="play-body">
+					<div id='instructions'>Drag your videos here!</div>
+				</div>
+			</div>
+			<div id="xs" class="col-md-1" style="margin-top: 90px;">
+			</div>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid1">
+		<div style="display: block;">
+			<button type="button" id="upvid1" class="btn btn-default" style="border: none;" onclick="moveUp('video1')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit1" value="24K Magic (3:46)" onclick="showVid('video1', 'vid1')">
+   			</form>
+			<button type="button" id="fvid1" class="btn btn-default" style="border: none;" onclick="removeVid('vid1', 'pop-items', 'fvid1', 1)">
+  				<span id="xvid1" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid1" class="btn btn-default" style="border: none;" onclick="moveDown('video1')">
+  				<span class="glyphicon glyphicon-chevron-down"></span>
+			</button>
+		</div>
+		<video id="video1" controls="true" width="320" height="240" class="video">
+	  			<source src="24kmagic.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid2">
+		<div style="display: block;">
+			<button type="button" id="upvid2" class="btn btn-default" style="border: none;" onclick="moveUp('video2')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit2" value="Fetish (3:47)" onclick="showVid('video2', 'vid2')">
+   			</form>
+   			<button type="button" id="fvid2" class="btn btn-default" style="border: none;" onclick="removeVid('vid2', 'pop-items', 'fvid2', 2)">
+  				<span id="xvid2" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid2" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video2')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video2" controls="true" width="320" height="240" class="video">
+	  			<source src="fetish.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid3">
+		<div style="display: block;">
+			<button type="button" id="upvid3" class="btn btn-default" style="border: none;" onclick="moveUp('video3')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit3" value="New Rules (3:44)" onclick="showVid('video3', 'vid3')">
+   			</form>
+   			<button type="button" id="fvid3" class="btn btn-default" style="border: none;" onclick="removeVid('vid3', 'pop-items', 'fvid3', 3)">
+  				<span id="xvid3" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid3" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video3')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video3" controls="true" width="320" height="240">
+  			<source src="newrules.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid4">
+		<div style="display: block;">
+			<button type="button" id="upvid4" class="btn btn-default" style="border: none;" onclick="moveUp('video4')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit4" value="Chandelier (3:51)" onclick="showVid('video4', 'vid4')">
+   			</form>
+   			<button type="button" id="fvid4" class="btn btn-default" style="border: none;" onclick="removeVid('vid4', 'pop-items', 'fvid4', 4)">
+  				<span id="xvid4" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid4" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video4')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video4" controls="true" width="320" height="240">
+  			<source src="chandelier.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid5">
+		<div style="display: block;">
+			<button type="button" id="upvid5" class="btn btn-default" style="border: none;" onclick="moveUp('video5')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit5" value="Hymn of the Weekend (4:20)" onclick="showVid('video5', 'vid5')">
+   			</form>
+   			<button type="button" id="fvid5" class="btn btn-default" style="border: none;" onclick="removeVid('vid5', 'pop-items', 'fvid5', 5)">
+  				<span id="xvid5" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid5" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video5')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video5" controls="true" width="320" height="240">
+  			<source src="hymn.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid6">
+		<div style="display: block;">
+			<button type="button" id="upvid6" class="btn btn-default" style="border: none;" onclick="moveUp('video6')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit6" value="Formation (4:47)" onclick="showVid('video6', 'vid6')">
+   			</form>
+   			<button type="button" id="fvid6" class="btn btn-default" style="border: none;" onclick="removeVid('vid6', 'hiphop-items', 'fvid6', 6)">
+  				<span id="xvid6" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid6" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video6')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video6" controls="true" width="320" height="240">
+  			<source src="formation.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid7">
+		<div style="display: block;">
+			<button type="button" id="upvid7" class="btn btn-default" style="border: none;" onclick="moveUp('video7')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit7" value="Unforgettable (4:46)" onclick="showVid('video7', 'vid7')">
+   			</form>
+   			<button type="button" id="fvid7" class="btn btn-default" style="border: none;" onclick="removeVid('vid7', 'hiphop-items', 'fvid7', 7)">
+  				<span id="xvid7" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid7" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video7')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video7" controls="true" width="320" height="240">
+  			<source src="unforgettable.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid8">
+		<div style="display: block;">
+			<button type="button" id="upvid8" class="btn btn-default" style="border: none;" onclick="moveUp('video8')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit8" value="Wild Thoughts (3:35)" onclick="showVid('video8', 'vid8')">
+   			</form>
+   			<button type="button" id="fvid8" class="btn btn-default" style="border: none;" onclick="removeVid('vid8', 'hiphop-items', 'fvid8', 8)">
+  				<span id="xvid8" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid8" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video8')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video8" controls="true" width="320" height="240">
+  			<source src="wildthoughts.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid9">
+		<div style="display: block;">
+			<button type="button" id="upvid9" class="btn btn-default" style="border: none;" onclick="moveUp('video9')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit9" value="Congratulations (3:46)" onclick="showVid('video9', 'vid9')">
+   			</form>
+			<button type="button" id="fvid9" class="btn btn-default" style="border: none;" onclick="removeVid('vid9', 'hiphop-items', 'fvid9', 9)">
+  				<span id="xvid9" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid9" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video9')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video9" controls="true" width="320" height="240">
+  			<source src="congratulations.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid10">
+		<div style="display: block;">
+			<button type="button" id="upvid10" class="btn btn-default" style="border: none;" onclick="moveUp('video10')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit10" value="God's Plan (5:56)" onclick="showVid('video10', 'vid10')">
+   			</form>
+			<button type="button" id="fvid10" class="btn btn-default" style="border: none;" onclick="removeVid('vid10', 'hiphop-items', 'fvid10', 10)">
+  				<span id="xvid10" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid10" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video10')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video10" controls="true" width="320" height="240">
+  			<source src="godsplan.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid11">
+		<div style="display: block;">
+			<button type="button" id="upvid11" class="btn btn-default" style="border: none;" onclick="moveUp('video11')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit11" value="Alone (3:19)" onclick="showVid('video11', 'vid11')">
+   			</form>
+   			<button type="button" id="fvid11" class="btn btn-default" style="border: none;" onclick="removeVid('vid11', 'edm-items', 'fvid11', 11)">
+  				<span id="xvid11" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid11" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video11')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video11" controls="true" width="320" height="240">
+  			<source src="alone.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid12">
+		<div style="display: block;">
+			<button type="button" id="upvid12" class="btn btn-default" style="border: none;" onclick="moveUp('video12')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit12" value="In The Name Of Love (3:25)" onclick="showVid('video12', 'vid12')">
+   			</form>
+   			<button type="button" id="fvid12" class="btn btn-default" style="border: none;" onclick="removeVid('vid12', 'edm-items', 'fvid12', 12)">
+  				<span id="xvid12" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid12" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video12')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video12" controls="true" width="320" height="240">
+  			<source src="inthenameoflove.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid13">
+		<div style="display: block;">
+			<button type="button" id="upvid13" class="btn btn-default" style="border: none;" onclick="moveUp('video13')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit13" value="Summer (3:54)" onclick="showVid('video13', 'vid13')">
+   			</form>
+   			<button type="button" id="fvid13" class="btn btn-default" style="border: none;" onclick="removeVid('vid13', 'edm-items', 'fvid13', 13)">
+  				<span id="xvid13" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid13" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video13')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video13" controls="true" width="320" height="240">
+  			<source src="summer.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid14">
+		<div style="display: block;">
+			<button type="button" id="upvid14" class="btn btn-default" style="border: none;" onclick="moveUp('video14')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit14" value="Levels (3:18)" onclick="showVid('video14', 'vid14')">
+   			</form>
+   			<button type="button" id="fvid14" class="btn btn-default" style="border: none;" onclick="removeVid('vid14', 'edm-items', 'fvid14', 14)">
+  				<span id="xvid14" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid14" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video14')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video14" controls="true" width="320" height="240">
+  			<source src="levels.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="vid15">
+		<div style="display: block;">
+			<button type="button" id="upvid15" class="btn btn-default" style="border: none;" onclick="moveUp('video15')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="submit15" value="No Money (3:22)" onclick="showVid('video15', 'vid15')">
+   			</form>
+   			<button type="button" id="fvid15" class="btn btn-default" style="border: none;" onclick="removeVid('vid15', 'edm-items', 'fvid15', 15)">
+  				<span id="xvid15" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downvid15" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('video15')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="video15" controls="true" width="320" height="240">
+  			<source src="nomoney.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="sugvid1">
+		<div style="display: block;">
+			<button type="button" id="upsugvid1" class="btn btn-default" style="border: none;" onclick="moveUp('sug1')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+        		<input type="button" id="sugsub1" value="Closer (0:58)" onclick="showVid('sug1', 'sugvid1')">
+   			</form>
+   			<button type="button" id="fsugvid1" class="btn btn-default" style="border: none;" onclick="removeVid('sugvid1', 'suggestions', 'fsugvid1', 1)">
+  				<span id="xsugvid1" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downsugvid1" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('sug1')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="sug1" controls="true" width="320" height="240">
+  			<source src="closer.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="sugvid2">
+		<div style="display: block;">
+			<button type="button" id="upsugvid2" class="btn btn-default" style="border: none;" onclick="moveUp('sug2')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+       			<input type="button" id="sugsub2" value="Don't Let Me Down (1:30)" onclick="showVid('sug2', 'sugvid2')">
+   			</form>
+   			<button type="button" id="fsugvid2" class="btn btn-default" style="border: none;" onclick="removeVid('sugvid2', 'suggestions', 'fsugvid2', 2)">
+  				<span id="xsugvid2" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downsugvid2" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('sug2')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="sug2" controls="true" width="320" height="240">
+		  	<source src="dontletmedown.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div class="btn btn-default box-item" style="display: block; z-index: 100; cursor: move;" id="sugvid3">
+		<div style="display: block;">
+			<button type="button" id="upsugvid3" class="btn btn-default" style="border: none;" onclick="moveUp('sug3')">
+  				<span class="glyphicon glyphicon-chevron-up"></span>
+			</button>
+			<form>
+       			<input type="button" id="sugsub3" value="Overture (2:38)" onclick="showVid('sug3', 'sugvid3')">
+   			</form>
+   			<button type="button" id="fsugvid3" class="btn btn-default" style="border: none;" onclick="removeVid('sugvid3', 'suggestions', 'fsugvid3', 3)">
+  				<span id="xsugvid3" class="glyphicon glyphicon-remove"></span>
+			</button>
+			<button type="button" id="downsugvid3" class="btn btn-default" style="border: none;" aria-label="Left Align" onclick="moveDown('sug3')">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
+		</div>
+		<video id="sug3" controls="true" width="320" height="240">
+		  	<source src="overture.mp4" type="video/mp4">
+		</video>
+	</div>
+</body>
+</html>
+
+
+			
+			
